@@ -1,6 +1,6 @@
 /** 
  * @file FloatArrayArgumentMarshaler.h
- * @brief Описание класса FloatArrayArgumentMarshaler
+ * @brief FloatArrayArgumentMarshaler class description
  * @author a.akulin
  * @date October 3, 2019
  */

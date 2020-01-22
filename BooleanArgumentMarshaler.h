@@ -1,6 +1,6 @@
 /** 
  * @file BooleanArgumentMarshaler.h
- * @brief Описание класса BooleanArgumentMarshaler
+ * @brief BooleanArgumentMarshaler class description
  * @author a.akulin
  * @date September 26, 2019
  */

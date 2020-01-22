@@ -1,6 +1,6 @@
 /** 
  * @file Args.cpp
- * @brief Реализация класса Args
+ * @brief Args class implementation
  * @author a.akulin
  * @date September 11, 2019
  */

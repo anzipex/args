@@ -1,6 +1,6 @@
 /** 
  * @file DoubleArgumentMarshaler.h
- * @brief Описание класса DoubleArgumentMarshaler
+ * @brief DoubleArgumentMarshaler class description
  * @author a.akulin
  * @date September 26, 2019
  */

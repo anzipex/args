@@ -1,6 +1,6 @@
 /** 
  * @file Args.h
- * @brief Description of the Args class
+ * @brief Description of Args class
  * @author a.akulin
  * @date September 11, 2019
  */

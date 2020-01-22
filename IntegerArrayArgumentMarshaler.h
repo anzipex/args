@@ -1,6 +1,6 @@
 /** 
  * @file IntegerArrayArgumentMarshaler.h
- * @brief Описание класса IntegerArrayArgumentMarshaler
+ * @brief IntegerArrayArgumentMarshaler class description
  * @author a.akulin
  * @date October 2, 2019
  */

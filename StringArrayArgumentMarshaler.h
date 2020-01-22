@@ -1,6 +1,6 @@
 /** 
  * @file StringArrayArgumentMarshaler.h
- * @brief Описание класса StringArrayArgumentMarshaler
+ * @brief StringArrayArgumentMarshaler class description
  * @author a.akulin
  * @date September 26, 2019
  */

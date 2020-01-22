@@ -1,6 +1,6 @@
 /** 
  * @file ArgumentMarshaler.h
- * @brief Описание интерфейса ArgumentMarshaler
+ * @brief ArgumentMarshaler class description
  * @author a.akulin
  * @date September 26, 2019
  */
