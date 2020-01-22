@@ -11,7 +11,7 @@
 class BooleanArgumentMarshaler : public ArgumentMarshaler {
 public:
 
-    virtual bool set(std::vector<std::string>::iterator currentArgument) override {
+    virtual bool set(std::vector<std::string>::iterator) override {
         _boolValue = true;
         return true;
     };
