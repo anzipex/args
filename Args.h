@@ -1,6 +1,6 @@
 /** 
  * @file Args.h
- * @brief Описание класса Args
+ * @brief Description of the Args class
  * @author a.akulin
  * @date September 11, 2019
  */
@@ -26,199 +26,199 @@
 class Args final {
 public:
     /**
-     * @brief Принимает параметры форматной строки и набор аргументов для парсинга
-     * @param schema, форматная строка.
-     * 1) Необходимо указать имя ключа (только одна буква)
-     * 2) Необходимо указать символ типа:
-     *    без символа - Boolean
+     * @brief Takes format string parameters and a set of arguments for parsing
+     * @param schema, format string.
+     * 1) You must specify the key name (only one letter)
+     * 2) A character of the type must be specified:
+     *    no character - Boolean
      *    * - String
      *    # - Integer
      *    #% - Float
      *    ## - Double
-     *    [*] - вектор String
-     *    [#] - вектор Integer
-     *    [#%] - вектор Float
-     * 3) ! после имени типа - ключ обязан быть в командной строке
-     * @param argc, количество аргументов
-     * @param argv, аргументы
+     *    [*] - vector String
+     *    [#] - vector Integer
+     *    [#%] - vector Float
+     * 3) ! after the type name - the key must be on the command line
+     * @param argc, number of arguments
+     * @param argv, arguments
      */
     Args(std::string schema, int argc, char** argv);
     ~Args() = default;
 
     /**
-     * @brief Проверить ключ командной строки на соответствие указанному типу данных
-     * @param arg, ключ командной строки
-     * @return Результат проверки
+     * @brief Check the command line key for compliance with the specified data type
+     * @param arg, command line switch
+     * @return Check result
      */
     bool check(char arg) const;
 
     /**
-     * @brief Получить значение bool по соответствующему имени ключа
-     * @param arg, ключ форматной строки
-     * @return Значение
+     * @brief Get the bool value by the corresponding key name
+     * @param arg, format string key
+     * @return Value
      */
     bool getBoolean(char arg);
 
     /**
-     * @brief Получить значение string по соответствующему имени ключа
-     * @param arg, ключ форматной строки
-     * @return Значение
+     * @brief Get string value by the corresponding key name
+     * @param arg, format string key
+     * @return Value
      */
     std::string getString(char arg);
 
     /**
-     * @brief Получить значение integer по соответствующему имени ключа
-     * @param arg, ключ форматной строки
-     * @return Значение
+     * @brief Get integer value by the corresponding key name
+     * @param arg, format string key
+     * @return Value
      */
     int getInt(char arg);
 
     /**
-     * @brief Получить значение float по соответствующему имени ключа
-     * @param arg, ключ форматной строки
-     * @return Значение
+     * @brief Get the float value by the corresponding key name
+     * @param arg, format string key
+     * @return Value
      */
     float getFloat(char arg);
 
     /**
-     * @brief Получить значение double по соответствующему имени ключа
-     * @param arg, ключ форматной строки
-     * @return Значение 
+     * @brief Get the double value by the corresponding key name
+     * @param arg, format string key
+     * @return Value
      */
     double getDouble(char arg);
 
     /**
-     * @brief Получить значение вектора string по соответствующему имени ключа
-     * @param arg, ключ форматной строки
-     * @return Значение
+     * @brief Get the value of the string vector by the corresponding key name
+     * @param arg, format string key
+     * @return Value
      */
     std::vector<std::string> getStringArray(char arg);
 
     /**
-     * @brief Получить значение вектора integer по соответствующему имени ключа
-     * @param arg, ключ форматной строки
-     * @return Значение
+     * @brief Get the value of the integer vector by the corresponding key name
+     * @param arg, format string key
+     * @return Value
      */
     std::vector<int> getIntArray(char arg);
 
     /**
-     * @brief Получить значение вектора float по соответствующему имени ключа
-     * @param arg, ключ форматной строки
-     * @return Значение
+     * @brief Get the value of the float vector by the corresponding key name
+     * @param arg, format string key
+     * @return Value
      */
     std::vector<float> getFloatArray(char arg);
 
     /**
-     * @brief Проверить, что все параметры распарсились без ошибок
-     * @return результат проверки
+     * @brief Check that all parameters are parsed without errors
+     * @return check result
      */
     bool isValid() const;
 
 private:
     /**
-     * @brief Получает вектор по каждому аргументу
-     * @param argc, количество аргументов
-     * @param argv, аргументы
+     * @brief Gets a vector for each argument
+     * @param argc, number of arguments
+     * @param argv, arguments
      */
     void sequenceArgs(int argc, char** argv);
 
     /**
-     * @brief Парсинг форматной строки
-     * @param schema, форматная строка
+     * @brief Format string parsing
+     * @param schema, format string
      */
     void parseSchema(std::string schema);
 
     /**
-     * @brief Разделить форматную строку по соответствующему символу
-     * @param schema, форматная строка
-     * @param delimiter, разделитель
-     * @return Ключи и их значения
+     * @brief Split the format string by the corresponding character
+     * @param schema, format string
+     * @param delimiter, delimiter
+     * @return Keys and their meanings
      */
     static std::vector<std::string> split(const std::string &schema, char delimiter);
 
     /**
-     * @brief Парсинг каждого элемента форматной строки
+     * @brief Parsing each element of the format string
      * @param element
      */
     void parseSchemaElement(std::string element);
 
     /**
-     * @brief Проверка, является ли аргумент ключом
+     * @brief Check if argument is key
      * @param arg
-     * @return Результат проверки
+     * @return Check result
      */
     static bool isKey(std::string arg);
 
     /**
-     * @brief Проверка, соответствия имени ключа
-     * @param elementId, имя ключа
+     * @brief Check for key name matching
+     * @param elementId, key name
      */
     static void validateSchemaElementId(char elementId);
 
     /**
-     * @brief Парсинг каждого аргумента командной строки
+     * @brief Parsing each command line argument
      */
     void parseArgStrings();
 
     /**
-     * @brief Проверка, является ли следующий аргумент последним
+     * @brief Check if the next argument is the last
      */
     bool nextNotKey();
 
     /**
-     * @brief Проверка, является ли аргумент ключом bool
+     * @brief Check if argument is a bool key
      */
     bool keyIsBool();
 
     /**
-     * @brief Задать текущий аргумент
+     * @brief Set current argument
      */
     void setCurrentArg();
 
     /**
-     * @brief Проверка наличия обязательных ключей и их значений
-     * @return Наличие обязательных ключей и их значений
+     * @brief Check for required keys and their values
+     * @return Availability of required keys and their values
      */
     bool checkRequirements();
 
     /**
-     * @brief Проверка валидностей всех аргументов
+     * @brief Validation of all arguments
      */
     void checkValidity();
 
     /**
-     * @brief Сделать вектор с обязательными ключами, если таковые имеются
+     * @brief Make a vector with required keys, if any
      */
     void makeRequiredSchemaKeys();
 
     /**
-     * @brief Проверка наличия обязательных ключей в форматной строке
-     * @return Наличие хотя бы одного ключа
+     * @brief Checking for required keys in a format string
+     * @return The presence of at least one key
      */
     bool checkRequiredSchemaKeys() const;
 
     /**
-     * @brief Проверка наличия значения у обязательного ключа среди аргументов командной строки
-     * @param schemaKey, обязательный ключ форматной строки
-     * @return Наличие значения у ключа из командной строки
+     * @brief Check for the value of a required key among command line arguments
+     * @param schemaKey, required format string key
+     * @return The value of the key from the command line
      */
     bool checkRequiredKeysValue(std::string schemaKey);
 
     /**
-     * @brief Проверка наличия ключей форматной и командной строки
-     * @return Наличие обязательного ключа в командной строке
+     * @brief Check for format and command line keys
+     * @return The presence of a required key on the command line
      */
     bool checkRequiredArgsKeys();
 
-    char _argChar; //!< имя ключа
-    bool _valid; //!< валидность
-    std::map<char, std::unique_ptr<ArgumentMarshaler> > _marshalers; //!< имена ключей и значения
-    std::map<char, std::string> _schemaArgs; //!< форматная строка из имен ключей и типов данных
-    std::vector<std::string>::iterator _curArg; //!< текущий аргумент
-    std::vector<std::string> _args; //!< аргументы командной строки
-    std::vector<std::string> _requiredShemaKeys; //!< обязательные ключи в форматной строке
-    std::vector<std::string> _requiredArgsKeys; //!< обязательные ключи в командной строке
-    std::vector<bool> _validity; //!< валидность всех аргументов
+    char _argChar; //! <key name
+    bool _valid; //! <validity
+    std::map <char, std::unique_ptr <ArgumentMarshaler>> _marshalers; //! <key names and values
+    std::map <char, std::string> _schemaArgs; //! <format string from key names and data types
+    std::vector <std::string> ::iterator _curArg; //! <current argument
+    std::vector <std::string> _args; //! <command line arguments
+    std::vector <std::string> _requiredShemaKeys; //! <required keys in the format string
+    std::vector <std::string> _requiredArgsKeys; //! <required keys on the command line
+    std::vector <bool> _validity; //! <validity of all arguments
 };
 
 #endif /* ARGS_H */
