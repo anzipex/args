@@ -46,8 +46,8 @@ public:
     ~Args() = default;
 
     /**
-     * @brief Check the command line key for compliance with the specified data type
-     * @param arg, command line switch
+     * @brief Check for a key in the passed arguments
+     * @param arg, command line key
      * @return Check result
      */
     bool check(char arg) const;

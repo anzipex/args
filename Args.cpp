@@ -147,6 +147,9 @@ bool Args::checkRequirements() {
 }
 
 void Args::checkValidity() {
+    if (_validity.size() == 0) {
+        _valid = true;
+    }
     for (int i = 0; i < _validity.size(); ++i) {
         if (!_validity[i]) {
             _valid = false;
