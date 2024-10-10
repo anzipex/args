@@ -142,10 +142,10 @@ bool Args::checkRequirements() {
 }
 
 void Args::checkValidity() {
-    if (validity_.size() == 0) {
+    if (validity_.empty()) {
         valid_ = true;
     }
-    for (int i = 0; i < validity_.size(); ++i) {
+    for (std::vector<bool>::size_type i = 0; i < validity_.size(); ++i) {
         if (!validity_[i]) {
             valid_ = false;
             break;
@@ -197,7 +197,7 @@ bool Args::checkRequiredSchemaKeys() const {
 }
 
 bool Args::check(char arg) const {
-    for (int i = 0; i < args_.size(); ++i) {
+    for (std::vector<std::string>::size_type i = 0; i < args_.size(); ++i) {
         if (isKey(args_[i]) && args_[i].at(1) == arg) {
             return true;
         }
