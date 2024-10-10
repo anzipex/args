@@ -7,15 +7,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(HEADERS
     Args.h
-        ArgumentMarshaller.h
-        BooleanArgumentMarshaller.h
-        DoubleArgumentMarshaller.h
-        FloatArgumentMarshaller.h
-        FloatArrayArgumentMarshaller.h
-        IntegerArgumentMarshaller.h
-        IntegerArrayArgumentMarshaller.h
-        StringArgumentMarshaller.h
-        StringArrayArgumentMarshaller.h
+    ArgumentMarshaller.h
+    BooleanArgumentMarshaller.h
+    DoubleArgumentMarshaller.h
+    FloatArgumentMarshaller.h
+    FloatArrayArgumentMarshaller.h
+    IntegerArgumentMarshaller.h
+    IntegerArrayArgumentMarshaller.h
+    StringArgumentMarshaller.h
+    StringArrayArgumentMarshaller.h
 )
 
 set(SOURCES Args.cpp)
