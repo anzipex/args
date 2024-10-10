@@ -1,6 +1,6 @@
 #pragma once
 
-class ArgumentMarshaler {
+class ArgumentMarshaller {
 public:
     virtual bool set(std::vector<std::string>::iterator currentArgument) = 0;
 };

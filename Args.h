@@ -6,15 +6,15 @@
 #include <algorithm>
 #include <sstream>
 
-#include "ArgumentMarshaler.h"
-#include "BooleanArgumentMarshaler.h"
-#include "StringArgumentMarshaler.h"
-#include "IntegerArgumentMarshaler.h"
-#include "FloatArgumentMarshaler.h"
-#include "DoubleArgumentMarshaler.h"
-#include "StringArrayArgumentMarshaler.h"
-#include "IntegerArrayArgumentMarshaler.h"
-#include "FloatArrayArgumentMarshaler.h"
+#include "ArgumentMarshaller.h"
+#include "BooleanArgumentMarshaller.h"
+#include "StringArgumentMarshaller.h"
+#include "IntegerArgumentMarshaller.h"
+#include "FloatArgumentMarshaller.h"
+#include "DoubleArgumentMarshaller.h"
+#include "StringArrayArgumentMarshaller.h"
+#include "IntegerArrayArgumentMarshaller.h"
+#include "FloatArrayArgumentMarshaller.h"
 
 class Args final {
 public:
@@ -203,13 +203,13 @@ private:
      */
     bool checkRequiredArgsKeys();
 
-    char _argChar; //!< key name
-    bool _valid; //!< validity
-    std::map<char, std::unique_ptr<ArgumentMarshaler> > _marshallers; //!< key names and values
-    std::map<char, std::string> _schemaArgs; //!< format string from key names and data types
-    std::vector<std::string>::iterator _curArg; //!< current argument
-    std::vector<std::string> _args; //!< command line arguments
-    std::vector<std::string> _requiredSchemaKeys; //!< required keys in the format string
-    std::vector<std::string> _requiredArgsKeys; //!< required keys on the command line
-    std::vector<bool> _validity; //!< validity of all arguments
+    char argChar_; //!< key name
+    bool valid_; //!< validity
+    std::map<char, std::unique_ptr<ArgumentMarshaller> > marshallers_; //!< key names and values
+    std::map<char, std::string> schemaArgs_; //!< format string from key names and data types
+    std::vector<std::string>::iterator curArg_; //!< current argument
+    std::vector<std::string> args_; //!< command line arguments
+    std::vector<std::string> requiredSchemaKeys_; //!< required keys in the format string
+    std::vector<std::string> requiredArgsKeys_; //!< required keys on the command line
+    std::vector<bool> validity_; //!< validity of all arguments
 };

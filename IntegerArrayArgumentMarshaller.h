@@ -1,6 +1,6 @@
 #pragma once
 
-class IntegerArrayArgumentMarshaler : public ArgumentMarshaler {
+class IntegerArrayArgumentMarshaller : public ArgumentMarshaller {
 public:
     virtual bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string arg = *(currentArgument--);
@@ -9,7 +9,7 @@ public:
         std::string parameter = "";
         while (iss >> parameter) {
             if (!parameter.empty() && isValid(parameter)) {
-                _intArrayValue.push_back(std::stoi(parameter));
+                intArrayValue_.push_back(std::stoi(parameter));
             } else {
                 std::cerr << "'" << *(currentArgument) << "'"
                           << " has "
@@ -21,14 +21,14 @@ public:
         return true;
     };
 
-    static std::vector<int> getValue(ArgumentMarshaler &am) {
-        const IntegerArrayArgumentMarshaler &iaa =
-                dynamic_cast<const IntegerArrayArgumentMarshaler &>(am);
-        return iaa._intArrayValue;
+    static std::vector<int> getValue(ArgumentMarshaller &am) {
+        const IntegerArrayArgumentMarshaller &iaa =
+                dynamic_cast<const IntegerArrayArgumentMarshaller &>(am);
+        return iaa.intArrayValue_;
     }
 
 private:
-    std::vector<int> _intArrayValue;
+    std::vector<int> intArrayValue_;
 
     static bool isValid(std::string parameter) {
         if (parameter[0] == '-') {

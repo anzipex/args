@@ -1,28 +1,28 @@
 #pragma once
 
-class DoubleArgumentMarshaler : public ArgumentMarshaler {
+class FloatArgumentMarshaller : public ArgumentMarshaller {
 public:
     virtual bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string parameter = *(currentArgument--);
         if (!parameter.empty() && isValid(parameter)) {
-            _doubleValue = std::stod(parameter);
+            floatValue_ = std::stof(parameter);
             return true;
         } else {
             std::cerr << "'" << *(currentArgument) << "'"
                       << " has "
                       << "'" << parameter << "'"
-                      << ", expected double value" << std::endl;
+                      << ", expected float value" << std::endl;
             return false;
         }
     };
 
-    static double getValue(ArgumentMarshaler &am) {
-        const DoubleArgumentMarshaler &da = dynamic_cast<const DoubleArgumentMarshaler &>(am);
-        return da._doubleValue;
+    static float getValue(const ArgumentMarshaller &am) {
+        const FloatArgumentMarshaller &fa = dynamic_cast<const FloatArgumentMarshaller &>(am);
+        return fa.floatValue_;
     }
 
 private:
-    double _doubleValue = 0;
+    float floatValue_ = 0;
 
     static bool isValid(std::string parameter) {
         if (parameter[0] == '-') {
