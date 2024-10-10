@@ -35,7 +35,7 @@ public:
      * @param argc, number of arguments
      * @param argv, arguments
      */
-    Args(std::string schema, int argc, char** argv);
+    Args(std::string schema, int argc, char **argv);
     ~Args() = default;
 
     /**
@@ -113,7 +113,7 @@ private:
      * @param argc, number of arguments
      * @param argv, arguments
      */
-    void sequenceArgs(int argc, char** argv);
+    void sequenceArgs(int argc, char **argv);
 
     /**
      * @brief Format string parsing
@@ -205,11 +205,11 @@ private:
 
     char _argChar; //! <key name
     bool _valid; //! <validity
-    std::map <char, std::unique_ptr <ArgumentMarshaler>> _marshallers; //! <key names and values
-    std::map <char, std::string> _schemaArgs; //! <format string from key names and data types
-    std::vector <std::string> ::iterator _curArg; //! <current argument
-    std::vector <std::string> _args; //! <command line arguments
-    std::vector <std::string> _requiredSchemaKeys; //! <required keys in the format string
-    std::vector <std::string> _requiredArgsKeys; //! <required keys on the command line
-    std::vector <bool> _validity; //! <validity of all arguments
+    std::map<char, std::unique_ptr<ArgumentMarshaler> > _marshallers; //! <key names and values
+    std::map<char, std::string> _schemaArgs; //! <format string from key names and data types
+    std::vector<std::string>::iterator _curArg; //! <current argument
+    std::vector<std::string> _args; //! <command line arguments
+    std::vector<std::string> _requiredSchemaKeys; //! <required keys in the format string
+    std::vector<std::string> _requiredArgsKeys; //! <required keys on the command line
+    std::vector<bool> _validity; //! <validity of all arguments
 };

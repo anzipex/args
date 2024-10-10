@@ -2,7 +2,6 @@
 
 class IntegerArrayArgumentMarshaler : public ArgumentMarshaler {
 public:
-
     virtual bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string arg = *(currentArgument--);
         std::replace(arg.begin(), arg.end(), ',', ' ');
@@ -12,8 +11,10 @@ public:
             if (!parameter.empty() && isValid(parameter)) {
                 _intArrayValue.push_back(std::stoi(parameter));
             } else {
-                std::cerr << "'" << *(currentArgument) << "'" << " has " <<
-                    "'" << parameter << "'" << ", expected integer value" << std::endl;
+                std::cerr << "'" << *(currentArgument) << "'"
+                          << " has "
+                          << "'" << parameter << "'"
+                          << ", expected integer value" << std::endl;
                 return false;
             }
         }
@@ -21,7 +22,8 @@ public:
     };
 
     static std::vector<int> getValue(ArgumentMarshaler &am) {
-        const IntegerArrayArgumentMarshaler &iaa = dynamic_cast<const IntegerArrayArgumentMarshaler &>(am);
+        const IntegerArrayArgumentMarshaler &iaa =
+                dynamic_cast<const IntegerArrayArgumentMarshaler &>(am);
         return iaa._intArrayValue;
     }
 
@@ -33,7 +35,7 @@ private:
             parameter.erase(0, 1);
         }
 
-        for (char& c : parameter) {
+        for (char &c : parameter) {
             if (c == '-') {
                 return false;
             } else if (!isdigit(c) || isalpha(c)) {

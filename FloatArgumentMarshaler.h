@@ -2,20 +2,21 @@
 
 class FloatArgumentMarshaler : public ArgumentMarshaler {
 public:
-
     virtual bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string parameter = *(currentArgument--);
         if (!parameter.empty() && isValid(parameter)) {
             _floatValue = std::stof(parameter);
             return true;
         } else {
-            std::cerr << "'" << *(currentArgument) << "'" << " has " <<
-                "'" << parameter << "'" << ", expected float value" << std::endl;
+            std::cerr << "'" << *(currentArgument) << "'"
+                      << " has "
+                      << "'" << parameter << "'"
+                      << ", expected float value" << std::endl;
             return false;
         }
     };
 
-    static float getValue(const ArgumentMarshaler & am) {
+    static float getValue(const ArgumentMarshaler &am) {
         const FloatArgumentMarshaler &fa = dynamic_cast<const FloatArgumentMarshaler &>(am);
         return fa._floatValue;
     }
@@ -28,7 +29,7 @@ private:
             parameter.erase(0, 1);
         }
 
-        for (char& c : parameter) {
+        for (char &c : parameter) {
             if (c == '-') {
                 return false;
             } else if (!isdigit(c) || isalpha(c)) {

@@ -2,7 +2,6 @@
 
 class StringArrayArgumentMarshaler : public ArgumentMarshaler {
 public:
-
     virtual bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string arg = *(currentArgument--);
         std::replace(arg.begin(), arg.end(), ',', ' ');
@@ -15,7 +14,8 @@ public:
     };
 
     static std::vector<std::string> getValue(ArgumentMarshaler &am) {
-        const StringArrayArgumentMarshaler &saa = dynamic_cast<const StringArrayArgumentMarshaler &>(am);
+        const StringArrayArgumentMarshaler &saa =
+                dynamic_cast<const StringArrayArgumentMarshaler &>(am);
         return saa._stringArrayValue;
     }
 

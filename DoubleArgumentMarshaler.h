@@ -2,15 +2,16 @@
 
 class DoubleArgumentMarshaler : public ArgumentMarshaler {
 public:
-
     virtual bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string parameter = *(currentArgument--);
         if (!parameter.empty() && isValid(parameter)) {
             _doubleValue = std::stod(parameter);
             return true;
         } else {
-            std::cerr << "'" << *(currentArgument) << "'" << " has " <<
-                "'" << parameter << "'" << ", expected double value" << std::endl;
+            std::cerr << "'" << *(currentArgument) << "'"
+                      << " has "
+                      << "'" << parameter << "'"
+                      << ", expected double value" << std::endl;
             return false;
         }
     };
@@ -28,7 +29,7 @@ private:
             parameter.erase(0, 1);
         }
 
-        for (char& c : parameter) {
+        for (char &c : parameter) {
             if (c == '-') {
                 return false;
             } else if (!isdigit(c) || isalpha(c)) {

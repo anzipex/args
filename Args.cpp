@@ -3,7 +3,7 @@
 
 #include "Args.h"
 
-Args::Args(std::string schema, int argc, char** argv) :
+Args::Args(std::string schema, int argc, char **argv) :
 _argChar(),
 _valid(false),
 _marshallers(),
@@ -21,13 +21,13 @@ _validity() {
     }
 }
 
-void Args::sequenceArgs(int argc, char** argv) {
+void Args::sequenceArgs(int argc, char **argv) {
     for (int i = 1; i < argc; ++i) {
         _args.push_back(argv[i]);
     }
 }
 
-std::vector<std::string> Args::split(const std::string& schema, char delimiter) {
+std::vector<std::string> Args::split(const std::string &schema, char delimiter) {
     std::vector<std::string> vecSchema;
     std::stringstream ss(schema);
     std::string item;
@@ -78,14 +78,15 @@ void Args::parseSchemaElement(std::string element) {
         _marshallers[elementId] = std::move(item);
     } else {
         _schemaArgs.erase(elementId);
-        std::cerr << "'" << elementId << elementTail << "'" << " is invalid schema argument" <<
-            std::endl;
+        std::cerr << "'" << elementId << elementTail << "'"
+                  << " is invalid schema argument" << std::endl;
     }
 }
 
 void Args::validateSchemaElementId(char elementId) {
     if (!isalpha(elementId)) {
-        std::cerr << "'" << elementId << "'" << " is invalid schema argument" << std::endl;
+        std::cerr << "'" << elementId << "'"
+                  << " is invalid schema argument" << std::endl;
     }
 }
 
@@ -154,13 +155,14 @@ void Args::checkValidity() {
 }
 
 bool Args::checkRequiredArgsKeys() {
-    for (auto& schemaKey : _requiredSchemaKeys) {
+    for (auto &schemaKey : _requiredSchemaKeys) {
         if (std::find(_args.begin(), _args.end(), schemaKey) != _args.end()) {
             if (!checkRequiredKeysValue(schemaKey)) {
                 break;
             }
         } else {
-            std::cerr << "'" << schemaKey << "'" << " is required" << std::endl;
+            std::cerr << "'" << schemaKey << "'"
+                      << " is required" << std::endl;
             return false;
         }
     }
@@ -173,7 +175,8 @@ bool Args::checkRequiredKeysValue(std::string schemaKey) {
             if (std::next(arg) != std::end(_args) && !isKey(*(std::next(arg)))) {
                 return true;
             } else {
-                std::cerr << "'" << schemaKey << "'" << " is required value" << std::endl;
+                std::cerr << "'" << schemaKey << "'"
+                          << " is required value" << std::endl;
                 return false;
             }
         }
@@ -182,7 +185,7 @@ bool Args::checkRequiredKeysValue(std::string schemaKey) {
 }
 
 void Args::makeRequiredSchemaKeys() {
-    for (const auto& sa : _schemaArgs) {
+    for (const auto &sa : _schemaArgs) {
         if (sa.second.back() == '!') {
             _requiredSchemaKeys.push_back("-" + std::string(1, sa.first));
         }
