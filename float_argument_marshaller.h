@@ -28,14 +28,19 @@ private:
             parameter.erase(0, 1);
         }
 
+        bool dotEncountered = false;
+
         for (char &c : parameter) {
-            if (c == '-') {
+            if (c == '.') {
+                if (dotEncountered) {
+                    return false;
+                }
+                dotEncountered = true;
+            } else if (isdigit(c) == 0) {
                 return false;
             }
-            if (!isdigit(c) || isalpha(c)) {
-                return false;
-            };
         }
-        return true;
+
+        return !parameter.empty() && parameter != ".";
     };
 };
