@@ -5,24 +5,23 @@ public:
     virtual bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string parameter = *(currentArgument--);
         if (!parameter.empty() && isValid(parameter)) {
-            doubleValue_ = std::stod(parameter);
+            value_ = std::stod(parameter);
             return true;
-        } else {
-            std::cerr << "'" << *(currentArgument) << "'"
-                      << " has "
-                      << "'" << parameter << "'"
-                      << ", expected double value" << std::endl;
-            return false;
         }
+        std::cerr << "'" << *(currentArgument) << "'"
+                  << " has "
+                  << "'" << parameter << "'"
+                  << ", expected double value" << std::endl;
+        return false;
     };
 
     static double getValue(ArgumentMarshaller &am) {
         const DoubleArgumentMarshaller &da = dynamic_cast<const DoubleArgumentMarshaller &>(am);
-        return da.doubleValue_;
+        return da.value_;
     }
 
 private:
-    double doubleValue_ = 0;
+    double value_ = 0;
 
     static bool isValid(std::string parameter) {
         if (parameter[0] == '-') {

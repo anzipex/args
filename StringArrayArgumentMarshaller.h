@@ -6,9 +6,9 @@ public:
         std::string arg = *(currentArgument--);
         std::replace(arg.begin(), arg.end(), ',', ' ');
         std::stringstream iss(arg);
-        std::string parameter = "";
+        std::string parameter;
         while (iss >> parameter) {
-            stringArrayValue_.push_back(parameter);
+            value_.push_back(parameter);
         }
         return true;
     };
@@ -16,9 +16,9 @@ public:
     static std::vector<std::string> getValue(ArgumentMarshaller &am) {
         const StringArrayArgumentMarshaller &saa =
                 dynamic_cast<const StringArrayArgumentMarshaller &>(am);
-        return saa.stringArrayValue_;
+        return saa.value_;
     }
 
 private:
-    std::vector<std::string> stringArrayValue_;
+    std::vector<std::string> value_;
 };

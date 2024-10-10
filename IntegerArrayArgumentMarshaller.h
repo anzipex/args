@@ -6,10 +6,10 @@ public:
         std::string arg = *(currentArgument--);
         std::replace(arg.begin(), arg.end(), ',', ' ');
         std::stringstream iss(arg);
-        std::string parameter = "";
+        std::string parameter;
         while (iss >> parameter) {
             if (!parameter.empty() && isValid(parameter)) {
-                intArrayValue_.push_back(std::stoi(parameter));
+                value_.push_back(std::stoi(parameter));
             } else {
                 std::cerr << "'" << *(currentArgument) << "'"
                           << " has "
@@ -24,11 +24,11 @@ public:
     static std::vector<int> getValue(ArgumentMarshaller &am) {
         const IntegerArrayArgumentMarshaller &iaa =
                 dynamic_cast<const IntegerArrayArgumentMarshaller &>(am);
-        return iaa.intArrayValue_;
+        return iaa.value_;
     }
 
 private:
-    std::vector<int> intArrayValue_;
+    std::vector<int> value_;
 
     static bool isValid(std::string parameter) {
         if (parameter[0] == '-') {
@@ -38,7 +38,8 @@ private:
         for (char &c : parameter) {
             if (c == '-') {
                 return false;
-            } else if (!isdigit(c) || isalpha(c)) {
+            }
+            if (!isdigit(c) || isalpha(c)) {
                 return false;
             };
         }

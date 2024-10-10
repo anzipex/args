@@ -5,24 +5,23 @@ public:
     virtual bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string parameter = *(currentArgument--);
         if (!parameter.empty() && isValid(parameter)) {
-            floatValue_ = std::stof(parameter);
+            value_ = std::stof(parameter);
             return true;
-        } else {
-            std::cerr << "'" << *(currentArgument) << "'"
-                      << " has "
-                      << "'" << parameter << "'"
-                      << ", expected float value" << std::endl;
-            return false;
         }
+        std::cerr << "'" << *(currentArgument) << "'"
+                  << " has "
+                  << "'" << parameter << "'"
+                  << ", expected float value" << std::endl;
+        return false;
     };
 
     static float getValue(const ArgumentMarshaller &am) {
         const FloatArgumentMarshaller &fa = dynamic_cast<const FloatArgumentMarshaller &>(am);
-        return fa.floatValue_;
+        return fa.value_;
     }
 
 private:
-    float floatValue_ = 0;
+    float value_ = 0;
 
     static bool isValid(std::string parameter) {
         if (parameter[0] == '-') {
@@ -32,7 +31,8 @@ private:
         for (char &c : parameter) {
             if (c == '-') {
                 return false;
-            } else if (!isdigit(c) || isalpha(c)) {
+            }
+            if (!isdigit(c) || isalpha(c)) {
                 return false;
             };
         }
