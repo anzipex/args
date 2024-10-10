@@ -1,12 +1,4 @@
-/** 
- * @file DoubleArgumentMarshaler.h
- * @brief DoubleArgumentMarshaler class description
- * @author a.akulin
- * @date September 26, 2019
- */
-
-#ifndef DOUBLEARGUMENTMARSHALER_H
-#define DOUBLEARGUMENTMARSHALER_H
+#pragma once
 
 class DoubleArgumentMarshaler : public ArgumentMarshaler {
 public:
@@ -46,5 +38,3 @@ private:
         return true;
     };
 };
-
-#endif /* DOUBLEARGUMENTMARSHALER_H */

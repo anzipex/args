@@ -1,12 +1,4 @@
-/** 
- * @file FloatArgumentMarshaler.h
- * @brief FloatArgumentMarshaler class description
- * @author a.akulin
- * @date September 26, 2019
- */
-
-#ifndef FLOATARGUMENTMARSHALER_H
-#define FLOATARGUMENTMARSHALER_H
+#pragma once
 
 class FloatArgumentMarshaler : public ArgumentMarshaler {
 public:
@@ -46,5 +38,3 @@ private:
         return true;
     };
 };
-
-#endif /* FLOATARGUMENTMARSHALER_H */

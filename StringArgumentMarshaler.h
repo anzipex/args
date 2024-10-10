@@ -1,12 +1,4 @@
-/** 
- * @file StringArgumentMarshaler.h
- * @brief StringArgumentMarshaler class description
- * @author a.akulin
- * @date September 26, 2019
- */
-
-#ifndef STRINGARGUMENTMARSHALER_H
-#define STRINGARGUMENTMARSHALER_H
+#pragma once
 
 class StringArgumentMarshaler : public ArgumentMarshaler {
 public:
@@ -24,5 +16,3 @@ public:
 private:
     std::string _stringValue = "";
 };
-
-#endif /* STRINGARGUMENTMARSHALER_H */

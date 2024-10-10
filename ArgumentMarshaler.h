@@ -1,16 +1,6 @@
-/** 
- * @file ArgumentMarshaler.h
- * @brief ArgumentMarshaler class description
- * @author a.akulin
- * @date September 26, 2019
- */
-
-#ifndef ARGUMENTMARSHALER_H
-#define ARGUMENTMARSHALER_H
+#pragma once
 
 class ArgumentMarshaler {
 public:
     virtual bool set(std::vector<std::string>::iterator currentArgument) = 0;
 };
-
-#endif /* ARGUMENTMARSHALER_H */

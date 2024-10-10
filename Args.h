@@ -1,18 +1,11 @@
-/** 
- * @file Args.h
- * @brief Description of Args class
- * @author a.akulin
- * @date September 11, 2019
- */
-
-#ifndef ARGS_H
-#define ARGS_H
+#pragma once
 
 #include <vector>
 #include <map>
 #include <memory>
 #include <algorithm>
 #include <sstream>
+
 #include "ArgumentMarshaler.h"
 #include "BooleanArgumentMarshaler.h"
 #include "StringArgumentMarshaler.h"
@@ -220,5 +213,3 @@ private:
     std::vector <std::string> _requiredArgsKeys; //! <required keys on the command line
     std::vector <bool> _validity; //! <validity of all arguments
 };
-
-#endif /* ARGS_H */

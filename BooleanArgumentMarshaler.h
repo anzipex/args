@@ -1,12 +1,4 @@
-/** 
- * @file BooleanArgumentMarshaler.h
- * @brief BooleanArgumentMarshaler class description
- * @author a.akulin
- * @date September 26, 2019
- */
-
-#ifndef BOOLEANARGUMENTMARSHALER_H
-#define BOOLEANARGUMENTMARSHALER_H
+#pragma once
 
 class BooleanArgumentMarshaler : public ArgumentMarshaler {
 public:
@@ -24,5 +16,3 @@ public:
 private:
     bool _boolValue = false;
 };
-
-#endif /* BOOLEANARGUMENTMARSHALER_H */

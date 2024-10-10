@@ -1,12 +1,4 @@
-/** 
- * @file IntegerArgumentMarshaler.h
- * @brief IntegerArgumentMarshaler class description
- * @author a.akulin
- * @date September 26, 2019
- */
-
-#ifndef INTEGERARGUMENTMARSHALER_H
-#define INTEGERARGUMENTMARSHALER_H
+#pragma once
 
 class IntegerArgumentMarshaler : public ArgumentMarshaler {
 public:
@@ -46,5 +38,3 @@ private:
         return true;
     };
 };
-
-#endif /* INTEGERARGUMENTMARSHALER_H */

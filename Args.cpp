@@ -1,12 +1,6 @@
-/** 
- * @file Args.cpp
- * @brief Args class implementation
- * @author a.akulin
- * @date September 11, 2019
- */
-
 #include <iostream>
 #include <algorithm>
+
 #include "Args.h"
 
 Args::Args(std::string schema, int argc, char** argv) :
@@ -184,6 +178,7 @@ bool Args::checkRequiredKeysValue(std::string schemaKey) {
             }
         }
     }
+    return false;
 }
 
 void Args::makeRequiredSchemaKeys() {

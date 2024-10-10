@@ -1,12 +1,4 @@
-/** 
- * @file StringArrayArgumentMarshaler.h
- * @brief StringArrayArgumentMarshaler class description
- * @author a.akulin
- * @date September 26, 2019
- */
-
-#ifndef STRINGARRAYARGUMENTMARSHALER_H
-#define STRINGARRAYARGUMENTMARSHALER_H
+#pragma once
 
 class StringArrayArgumentMarshaler : public ArgumentMarshaler {
 public:
@@ -30,5 +22,3 @@ public:
 private:
     std::vector<std::string> _stringArrayValue;
 };
-
-#endif /* STRINGARRAYARGUMENTMARSHALER_H */
