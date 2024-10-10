@@ -6,11 +6,11 @@
 Args::Args(std::string schema, int argc, char** argv) :
 _argChar(),
 _valid(false),
-_marshalers(),
+_marshallers(),
 _schemaArgs(),
 _curArg(),
 _args(),
-_requiredShemaKeys(),
+_requiredSchemaKeys(),
 _requiredArgsKeys(),
 _validity() {
     sequenceArgs(argc, argv);
@@ -54,28 +54,28 @@ void Args::parseSchemaElement(std::string element) {
 
     if (elementTail.length() == 0 || elementTail == "!") {
         std::unique_ptr<BooleanArgumentMarshaler> item(new BooleanArgumentMarshaler());
-        _marshalers[elementId] = std::move(item);
+        _marshallers[elementId] = std::move(item);
     } else if (elementTail == "*" || elementTail == "*!") {
         std::unique_ptr<StringArgumentMarshaler> item(new StringArgumentMarshaler());
-        _marshalers[elementId] = std::move(item);
+        _marshallers[elementId] = std::move(item);
     } else if (elementTail == "#" || elementTail == "#!") {
         std::unique_ptr<IntegerArgumentMarshaler> item(new IntegerArgumentMarshaler());
-        _marshalers[elementId] = std::move(item);
+        _marshallers[elementId] = std::move(item);
     } else if (elementTail == "#%" || elementTail == "#%!") {
         std::unique_ptr<FloatArgumentMarshaler> item(new FloatArgumentMarshaler());
-        _marshalers[elementId] = std::move(item);
+        _marshallers[elementId] = std::move(item);
     } else if (elementTail == "##" || elementTail == "##!") {
         std::unique_ptr<DoubleArgumentMarshaler> item(new DoubleArgumentMarshaler());
-        _marshalers[elementId] = std::move(item);
+        _marshallers[elementId] = std::move(item);
     } else if (elementTail == "[*]" || elementTail == "[*]!") {
         std::unique_ptr<StringArrayArgumentMarshaler> item(new StringArrayArgumentMarshaler());
-        _marshalers[elementId] = std::move(item);
+        _marshallers[elementId] = std::move(item);
     } else if (elementTail == "[#]" || elementTail == "[#]!") {
         std::unique_ptr<IntegerArrayArgumentMarshaler> item(new IntegerArrayArgumentMarshaler());
-        _marshalers[elementId] = std::move(item);
+        _marshallers[elementId] = std::move(item);
     } else if (elementTail == "[#%]" || elementTail == "[#%]!") {
         std::unique_ptr<FloatArrayArgumentMarshaler> item(new FloatArrayArgumentMarshaler());
-        _marshalers[elementId] = std::move(item);
+        _marshallers[elementId] = std::move(item);
     } else {
         _schemaArgs.erase(elementId);
         std::cerr << "'" << elementId << elementTail << "'" << " is invalid schema argument" <<
@@ -124,7 +124,7 @@ bool Args::keyIsBool() {
 }
 
 void Args::setCurrentArg() {
-    _validity.push_back(_marshalers[_argChar]->set(_curArg));
+    _validity.push_back(_marshallers[_argChar]->set(_curArg));
 }
 
 bool Args::checkRequirements() {
@@ -154,7 +154,7 @@ void Args::checkValidity() {
 }
 
 bool Args::checkRequiredArgsKeys() {
-    for (auto& schemaKey : _requiredShemaKeys) {
+    for (auto& schemaKey : _requiredSchemaKeys) {
         if (std::find(_args.begin(), _args.end(), schemaKey) != _args.end()) {
             if (!checkRequiredKeysValue(schemaKey)) {
                 break;
@@ -184,13 +184,13 @@ bool Args::checkRequiredKeysValue(std::string schemaKey) {
 void Args::makeRequiredSchemaKeys() {
     for (const auto& sa : _schemaArgs) {
         if (sa.second.back() == '!') {
-            _requiredShemaKeys.push_back("-" + std::string(1, sa.first));
+            _requiredSchemaKeys.push_back("-" + std::string(1, sa.first));
         }
     }
 }
 
 bool Args::checkRequiredSchemaKeys() const {
-    return (!_requiredShemaKeys.empty());
+    return (!_requiredSchemaKeys.empty());
 }
 
 bool Args::check(char arg) const {
@@ -203,35 +203,35 @@ bool Args::check(char arg) const {
 }
 
 bool Args::getBoolean(char arg) {
-    return BooleanArgumentMarshaler::getValue(*_marshalers.at(arg));
+    return BooleanArgumentMarshaler::getValue(*_marshallers.at(arg));
 }
 
 std::string Args::getString(char arg) {
-    return StringArgumentMarshaler::getValue(*_marshalers.at(arg));
+    return StringArgumentMarshaler::getValue(*_marshallers.at(arg));
 }
 
 int Args::getInt(char arg) {
-    return IntegerArgumentMarshaler::getValue(*_marshalers.at(arg));
+    return IntegerArgumentMarshaler::getValue(*_marshallers.at(arg));
 }
 
 float Args::getFloat(char arg) {
-    return FloatArgumentMarshaler::getValue(*_marshalers.at(arg));
+    return FloatArgumentMarshaler::getValue(*_marshallers.at(arg));
 }
 
 double Args::getDouble(char arg) {
-    return DoubleArgumentMarshaler::getValue(*_marshalers.at(arg));
+    return DoubleArgumentMarshaler::getValue(*_marshallers.at(arg));
 }
 
 std::vector<std::string> Args::getStringArray(char arg) {
-    return StringArrayArgumentMarshaler::getValue(*_marshalers.at(arg));
+    return StringArrayArgumentMarshaler::getValue(*_marshallers.at(arg));
 }
 
 std::vector<int> Args::getIntArray(char arg) {
-    return IntegerArrayArgumentMarshaler::getValue(*_marshalers.at(arg));
+    return IntegerArrayArgumentMarshaler::getValue(*_marshallers.at(arg));
 }
 
 std::vector<float> Args::getFloatArray(char arg) {
-    return FloatArrayArgumentMarshaler::getValue(*_marshalers.at(arg));
+    return FloatArrayArgumentMarshaler::getValue(*_marshallers.at(arg));
 }
 
 bool Args::isValid() const {

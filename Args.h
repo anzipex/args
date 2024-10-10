@@ -205,11 +205,11 @@ private:
 
     char _argChar; //! <key name
     bool _valid; //! <validity
-    std::map <char, std::unique_ptr <ArgumentMarshaler>> _marshalers; //! <key names and values
+    std::map <char, std::unique_ptr <ArgumentMarshaler>> _marshallers; //! <key names and values
     std::map <char, std::string> _schemaArgs; //! <format string from key names and data types
     std::vector <std::string> ::iterator _curArg; //! <current argument
     std::vector <std::string> _args; //! <command line arguments
-    std::vector <std::string> _requiredShemaKeys; //! <required keys in the format string
+    std::vector <std::string> _requiredSchemaKeys; //! <required keys in the format string
     std::vector <std::string> _requiredArgsKeys; //! <required keys on the command line
     std::vector <bool> _validity; //! <validity of all arguments
 };
