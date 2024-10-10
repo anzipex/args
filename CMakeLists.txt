@@ -6,19 +6,19 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(HEADERS
-    Args.h
-    ArgumentMarshaller.h
-    BooleanArgumentMarshaller.h
-    DoubleArgumentMarshaller.h
-    FloatArgumentMarshaller.h
-    FloatArrayArgumentMarshaller.h
-    IntegerArgumentMarshaller.h
-    IntegerArrayArgumentMarshaller.h
-    StringArgumentMarshaller.h
-    StringArrayArgumentMarshaller.h
+    args.h
+    argument_marshaller.h
+    boolean_argument_marshaller.h
+    double_argument_marshaller.h
+    float_argument_marshaller.h
+    float_array_argument_marshaller.h
+    integer_argument_marshaller.h
+    integer_array_argument_marshaller.h
+    string_argument_marshaller.h
+    string_array_argument_marshaller.h
 )
 
-set(SOURCES Args.cpp)
+set(SOURCES args.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 
-#include "Args.h"
+#include "args.h"
 
 Args::Args(std::string schema, int argc, char **argv) :
 argChar_(),

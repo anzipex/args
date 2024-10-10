@@ -6,15 +6,15 @@
 #include <algorithm>
 #include <sstream>
 
-#include "ArgumentMarshaller.h"
-#include "BooleanArgumentMarshaller.h"
-#include "StringArgumentMarshaller.h"
-#include "IntegerArgumentMarshaller.h"
-#include "FloatArgumentMarshaller.h"
-#include "DoubleArgumentMarshaller.h"
-#include "StringArrayArgumentMarshaller.h"
-#include "IntegerArrayArgumentMarshaller.h"
-#include "FloatArrayArgumentMarshaller.h"
+#include "argument_marshaller.h"
+#include "boolean_argument_marshaller.h"
+#include "string_argument_marshaller.h"
+#include "integer_argument_marshaller.h"
+#include "float_argument_marshaller.h"
+#include "double_argument_marshaller.h"
+#include "string_array_argument_marshaller.h"
+#include "integer_array_argument_marshaller.h"
+#include "float_array_argument_marshaller.h"
 
 class Args final {
 public:
