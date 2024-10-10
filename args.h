@@ -35,15 +35,8 @@ public:
      * @param argc, number of arguments
      * @param argv, arguments
      */
-    Args(std::string schema, int argc, char **argv);
+    Args(const std::string &schema, int argc, char **argv);
     ~Args() = default;
-
-    /**
-     * @brief Check for a key in the passed arguments
-     * @param arg, command line key
-     * @return Check result
-     */
-    bool check(char arg) const;
 
     /**
      * @brief Get the bool value by the corresponding key name
@@ -101,12 +94,6 @@ public:
      */
     std::vector<float> getFloatArray(char arg);
 
-    /**
-     * @brief Check that all parameters are parsed without errors
-     * @return check result
-     */
-    bool isValid() const;
-
 private:
     /**
      * @brief Gets a vector for each argument
@@ -119,7 +106,7 @@ private:
      * @brief Format string parsing
      * @param schema, format string
      */
-    void parseSchema(std::string schema);
+    void parseSchema(const std::string &schema);
 
     /**
      * @brief Split the format string by the corresponding character
@@ -195,7 +182,7 @@ private:
      * @param schemaKey, required format string key
      * @return The value of the key from the command line
      */
-    bool checkRequiredKeysValue(std::string schemaKey);
+    bool checkRequiredKeysValue(const std::string &schemaKey);
 
     /**
      * @brief Check for format and command line keys
@@ -204,7 +191,6 @@ private:
     bool checkRequiredArgsKeys();
 
     char argChar_; //!< key name
-    bool valid_; //!< validity
     std::map<char, std::unique_ptr<ArgumentMarshaller> > marshallers_; //!< key names and values
     std::map<char, std::string> schemaArgs_; //!< format string from key names and data types
     std::vector<std::string>::iterator curArg_; //!< current argument
