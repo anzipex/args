@@ -2,7 +2,8 @@
 
 class DoubleArgumentMarshaller : public ArgumentMarshaller {
 public:
-    virtual bool set(std::vector<std::string>::iterator currentArgument) override {
+    ~DoubleArgumentMarshaller() override = default;
+    bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string parameter = *(currentArgument--);
         if (!parameter.empty() && isValid(parameter)) {
             value_ = std::stod(parameter);
@@ -11,11 +12,11 @@ public:
         std::cerr << "'" << *(currentArgument) << "'"
                   << " has "
                   << "'" << parameter << "'"
-                  << ", expected double value" << std::endl;
+                  << ", expected double value\n";
         return false;
     };
 
-    static double getValue(ArgumentMarshaller &am) {
+    static double getValue(const ArgumentMarshaller &am) {
         const DoubleArgumentMarshaller &da = dynamic_cast<const DoubleArgumentMarshaller &>(am);
         return da.value_;
     }
@@ -28,13 +29,19 @@ private:
             parameter.erase(0, 1);
         }
 
+        bool dotEncountered = false;
+
         for (char &c : parameter) {
-            if (c == '-') {
+            if (c == '.') {
+                if (dotEncountered) {
+                    return false;
+                }
+                dotEncountered = true;
+            } else if (isdigit(c) == 0) {
                 return false;
-            } else if (!isdigit(c) || isalpha(c)) {
-                return false;
-            };
+            }
         }
-        return true;
+
+        return !parameter.empty() && parameter != ".";
     };
 };

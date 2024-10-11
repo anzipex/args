@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <vector>
 #include <map>
 #include <memory>
@@ -28,9 +29,9 @@ public:
      *    # - Integer
      *    #% - Float
      *    ## - Double
-     *    [*] - vector String
-     *    [#] - vector Integer
-     *    [#%] - vector Float
+     *    [*] - vector of Strings
+     *    [#] - vector of Integers
+     *    [#%] - vector of Floats
      * 3) ! after the type name - the key must be on the command line
      * @param argc, number of arguments
      * @param argv, arguments
@@ -114,7 +115,7 @@ private:
      * @param delimiter, delimiter
      * @return Keys and their meanings
      */
-    static std::vector<std::string> split(const std::string &schema, char delimiter);
+    std::vector<std::string> split(const std::string &schema, char delimiter);
 
     /**
      * @brief Parsing each element of the format string

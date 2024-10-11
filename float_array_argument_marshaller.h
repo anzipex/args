@@ -2,7 +2,8 @@
 
 class FloatArrayArgumentMarshaller : public ArgumentMarshaller {
 public:
-    virtual bool set(std::vector<std::string>::iterator currentArgument) override {
+    ~FloatArrayArgumentMarshaller() override = default;
+    bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string arg = *(currentArgument--);
         std::replace(arg.begin(), arg.end(), ',', ' ');
         std::stringstream iss(arg);
@@ -14,14 +15,14 @@ public:
                 std::cerr << "'" << *(currentArgument) << "'"
                           << " has "
                           << "'" << parameter << "'"
-                          << ", expected float value" << std::endl;
+                          << ", expected float value\n";
                 return false;
             }
         }
         return true;
     };
 
-    static std::vector<float> getValue(ArgumentMarshaller &am) {
+    static std::vector<float> getValue(const ArgumentMarshaller &am) {
         const FloatArrayArgumentMarshaller &faa =
                 dynamic_cast<const FloatArrayArgumentMarshaller &>(am);
         return faa.value_;
@@ -35,14 +36,19 @@ private:
             parameter.erase(0, 1);
         }
 
+        bool dotEncountered = false;
+
         for (char &c : parameter) {
-            if (c == '-') {
+            if (c == '.') {
+                if (dotEncountered) {
+                    return false;
+                }
+                dotEncountered = true;
+            } else if (isdigit(c) == 0) {
                 return false;
             }
-            if (!isdigit(c) || isalpha(c)) {
-                return false;
-            };
         }
-        return true;
+
+        return !parameter.empty() && parameter != ".";
     };
 };

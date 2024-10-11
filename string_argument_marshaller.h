@@ -2,7 +2,8 @@
 
 class StringArgumentMarshaller : public ArgumentMarshaller {
 public:
-    virtual bool set(std::vector<std::string>::iterator currentArgument) override {
+    ~StringArgumentMarshaller() override = default;
+    bool set(std::vector<std::string>::iterator currentArgument) override {
         value_ = *(currentArgument);
         return true;
     };

@@ -1,6 +1,3 @@
-#include <iostream>
-#include <algorithm>
-
 #include "args.h"
 
 Args::Args(const std::string &schema, int argc, char **argv) :
@@ -27,17 +24,17 @@ void Args::sequenceArgs(int argc, char **argv) {
 }
 
 std::vector<std::string> Args::split(const std::string &schema, char delimiter) {
-    std::vector<std::string> vecSchema;
-    std::stringstream ss(schema);
-    std::string item;
-    while (getline(ss, item, delimiter)) {
-        vecSchema.push_back(item);
+    std::vector<std::string> tokens;
+    std::string token;
+    std::istringstream tokenStream(schema);
+    while (std::getline(tokenStream, token, delimiter)) {
+        tokens.push_back(token);
     }
-    return vecSchema;
+    return tokens;
 }
 
 void Args::parseSchema(const std::string &schema) {
-    std::vector<std::string> vecSchema = split(schema, ',');
+    std::vector<std::string> vecSchema = split(schema, ' ');
     for (unsigned int i = 0; i < vecSchema.size(); ++i) {
         if (vecSchema[i].length() > 0) {
             parseSchemaElement(vecSchema[i]);
@@ -78,14 +75,14 @@ void Args::parseSchemaElement(std::string element) {
     } else {
         schemaArgs_.erase(elementId);
         std::cerr << "'" << elementId << elementTail << "'"
-                  << " is invalid schema argument" << std::endl;
+                  << " is invalid schema argument\n";
     }
 }
 
 void Args::validateSchemaElementId(char elementId) {
     if (isalpha(elementId) == 0) {
         std::cerr << "'" << elementId << "'"
-                  << " is invalid schema argument" << std::endl;
+                  << " is invalid schema argument\n";
     }
 }
 
@@ -153,7 +150,7 @@ bool Args::checkRequiredArgsKeys() {
             }
         } else {
             std::cerr << "'" << schemaKey << "'"
-                      << " is required" << std::endl;
+                      << " is required\n";
             return false;
         }
     }
@@ -167,7 +164,7 @@ bool Args::checkRequiredKeysValue(const std::string &schemaKey) {
                 return true;
             }
             std::cerr << "'" << schemaKey << "'"
-                      << " is required value" << std::endl;
+                      << " is required value\n";
             return false;
         }
     }

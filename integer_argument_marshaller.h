@@ -2,7 +2,8 @@
 
 class IntegerArgumentMarshaller : public ArgumentMarshaller {
 public:
-    virtual bool set(std::vector<std::string>::iterator currentArgument) override {
+    ~IntegerArgumentMarshaller() override = default;
+    bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string parameter = *(currentArgument--);
         if (!parameter.empty() && isValid(parameter)) {
             value_ = std::stoi(parameter);
@@ -11,7 +12,7 @@ public:
         std::cerr << "'" << *(currentArgument) << "'"
                   << " has "
                   << "'" << parameter << "'"
-                  << ", expected integer value" << std::endl;
+                  << ", expected integer value\n";
         return false;
     };
 
@@ -32,7 +33,7 @@ private:
             if (c == '-') {
                 return false;
             }
-            if (!isdigit(c) || isalpha(c)) {
+            if ((isdigit(c) == 0) || (isalpha(c) != 0)) {
                 return false;
             };
         }

@@ -2,7 +2,8 @@
 
 class FloatArgumentMarshaller : public ArgumentMarshaller {
 public:
-    virtual bool set(std::vector<std::string>::iterator currentArgument) override {
+    ~FloatArgumentMarshaller() override = default;
+    bool set(std::vector<std::string>::iterator currentArgument) override {
         std::string parameter = *(currentArgument--);
         if (!parameter.empty() && isValid(parameter)) {
             value_ = std::stof(parameter);
@@ -11,7 +12,7 @@ public:
         std::cerr << "'" << *(currentArgument) << "'"
                   << " has "
                   << "'" << parameter << "'"
-                  << ", expected float value" << std::endl;
+                  << ", expected float value\n";
         return false;
     };
 
